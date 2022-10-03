@@ -1,0 +1,132 @@
+package no.hvl.dat100.lab6.matriser;
+
+public class Matriser {
+	public static void main(String[] args) {
+		int[][] tab = {{1, 2, 3, 10},{4,5,6, 11},{7,8,9,12},{1,2,9,1}};
+		int[][] tab2 = {{1, 2, 3, 10},{4,5,6, 11},{7,8,9,12},{1,2,9,1}};
+		int tall=2;
+		skrivUt(tab);
+		System.out.print("\n"+tilStreng(tab));
+		skaler(tall, tab);
+		System.out.println(erLik(tab, tab2)+" ");
+		speile(tab);
+		multipliser(tab, tab2);
+	}
+
+	// a)
+	public static void skrivUt(int[][] matrise) {
+		
+		for(int[] element: matrise) {
+			for(int element2: element) {
+				System.out.print(element2+" ");
+			}
+		}
+	}
+
+	// b)
+	public static String tilStreng(int[][] matrise) {
+		String str = "";
+		for(int[] element: matrise) {
+			for(int element2: element) {
+				str+=element2+" ";
+			}
+			str+="\n";
+		}
+		return str;
+	}
+
+	// c)
+	public static int[][] skaler(int tall, int[][] matrise) {
+		System.out.print("\n");
+		int a=0;
+		int[][] nymatrise = new int[matrise.length][matrise[a].length];
+		
+		for(int i=0; i<matrise.length; i++){
+			for(int j=0; j<matrise[a].length; j++) {
+				nymatrise[i][j]= matrise[i][j]*tall;
+				System.out.print(nymatrise[i][j]+" ");
+			}
+			System.out.print("\n");
+			a++;
+		}
+		return nymatrise;
+	}
+
+	// d)
+	public static boolean erLik(int[][] a, int[][] b) {
+		boolean bool = true;
+		
+		int tall =0;
+		
+		for(int i=0; i<a.length; i++){
+			for(int j=0; j<b[tall].length; j++) {
+				if(a[i][j]!=b[i][j]) {
+					bool=false;
+				}
+			}
+			tall++;
+		}
+		return bool;
+	}
+	
+	// e)
+	public static int[][] speile(int[][] matrise) {
+
+		int a= 0;
+		
+		int[][] revers= new int[matrise.length][matrise[a].length];
+				
+			for(int i=0; i<matrise.length; i++) {
+				
+				for(int j=0; j<matrise[a].length; j++) {
+					revers[matrise.length-1-i][matrise.length-1-j]=matrise[i][j];
+				}
+				
+
+			}
+			//Dette er for å vise speilet matrise i console: 
+			for(int i=0; i<matrise.length; i++) {
+				System.out.print("{");
+
+				for(int j=0; j<matrise[a].length; j++) {
+					System.out.print(revers[i][j]+" ");	
+				}
+				System.out.print("} ");
+			}
+		return revers;
+	}
+
+	// f)
+	public static int[][] multipliser(int[][] a, int[][] b) {
+		
+		
+		int r1 = 2, c1 = 3;
+        int r2 = 3, c2 = 2;
+        
+        int[][] førsteMatrix = { {3, -2, 5}, {3, 0, 4} };
+        int[][] andreMatrix = { {2, 3}, {-9, 0}, {0, 4} };
+
+        // Mutliplying two matrices
+        
+        int[][] produkt = new int[r1][c2];
+        
+        for(int i = 0; i < r1; i++) {
+            for (int j = 0; j < c2; j++) {
+                for (int k = 0; k < c1; k++) {
+                    produkt[i][j] += førsteMatrix[i][k] * andreMatrix[k][j];
+                }
+            }
+        }
+
+        // Displaying the result
+        System.out.println();
+        for(int[] row : produkt) {
+            for (int column : row) {
+                System.out.print(column + "    ");
+            }
+            System.out.println();
+        }
+		return produkt;
+		
+	}
+}
